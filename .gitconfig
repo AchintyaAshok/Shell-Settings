@@ -1,0 +1,20 @@
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = magenta bold
+
+[color "branch"]
+  remote = cyan
+  local = magenta
+  current = white reverse
+
+[alias]
+br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) | %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) | %(color:magenta)%(authorname)%(color:reset) | (%(color:green)%(committerdate:relative)%(color:reset))'
