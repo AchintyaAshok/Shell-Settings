@@ -1,6 +1,9 @@
 # Welcome Prompt
 echo -e "\n\nWelcome, Achintya. Preparing a new session...\n\n"
 
+# Git branch
+CURRENT_BRANCH="$(git branch 2>/dev/null | grep ^* | awk '{print $2}')"
+
 # Startup Configuration
 ## Configure the color scheme for terminal output (color ls)
 export CLICOLOR=1
@@ -26,13 +29,14 @@ _LiGRAY="\[\e[0;37m\]"
 _WHITE="\[\e[1;37m\]"
 
 # Bash Prompt Configuration
-prompt_configuration="[$_LiGREEN\w$RC]\n$_YELLOW\u$RC$_WHITE@$RC$_LiPurple\h$RC >"
+prompt_configuration="[$_LiGREEN\w$RC]\n$_LiCYAN($CURRENT_BRANCH)$RC\n$_YELLOW\u$RC$_WHITE@$RC$_LiPURPLE\h$_WHITE$>$RC "
 echo "Bash Prompt Configuration => $prompt_configuration"
 export PS1=$prompt_configuration
 
 # Custom Aliases
 alias ll="ls -lart"
 alias dockerkill='pkill -f docker-compose;docker kill $(docker ps -q)'
+alias reload="source ~/.bash_profile"
 
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
