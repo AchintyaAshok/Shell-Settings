@@ -1,13 +1,24 @@
-# Welcome Prompt
-echo -e "\n\nWelcome, Achintya. Preparing a new session...\n\n"
+##### WELCOME #####
+echo -e "\n-- Welcome, Achintya. Setting Up Your Shell. -- \n\n"
 
+##### ENVIRONMENT SETUP #####
+# Setting PATH for Python 2.7
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+##### SHELL SETTINGS #####
+export HISTSIZE=10000
+export HISTFILESIZE=
+
+##### BASH PROMPT CONFIGURATION #####
 # Git branch
 CURRENT_BRANCH="$(git branch 2>/dev/null | grep ^* | awk '{print $2}')"
 
-# Startup Configuration
-## Configure the color scheme for terminal output (color ls)
+# Set Terminal Colors
 export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Custom Colors (for ease of use)
 RC="\[\e[0m\]" # Reset color
@@ -33,10 +44,13 @@ prompt_configuration="[$_LiGREEN\w$RC]\n$_LiCYAN($CURRENT_BRANCH)$RC\n$_YELLOW\u
 echo "Bash Prompt Configuration => $prompt_configuration"
 export PS1=$prompt_configuration
 
-# Custom Aliases
-alias ll="ls -lart"
+##### DOCKER STUFF #####
 alias dockerkill='pkill -f docker-compose;docker kill $(docker ps -q)'
+alias dockerprune='docker system prune -a'
+
+##### CUSTOM ALIASES #####
 alias reload="source ~/.bash_profile"
+alias ll='ls -laG'
 
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
