@@ -15,6 +15,12 @@ export HISTFILESIZE=
 ##### BASH PROMPT CONFIGURATION #####
 # Git branch
 CURRENT_BRANCH="$(git branch 2>/dev/null | grep ^* | awk '{print $2}')"
+current_branch() {
+    git branch > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "$(git branch 2>/dev/null | grep ^* | awk '{print $2}')"
+    fi
+}
 
 # Set Terminal Colors
 export CLICOLOR=1
@@ -40,7 +46,7 @@ _LiGRAY="\[\e[0;37m\]"
 _WHITE="\[\e[1;37m\]"
 
 # Bash Prompt Configuration
-prompt_configuration="[$_LiGREEN\w$RC]\n$_LiCYAN($CURRENT_BRANCH)$RC\n$_YELLOW\u$RC$_WHITE@$RC$_LiPURPLE\h$_WHITE$>$RC "
+prompt_configuration="[$_LiGREEN\w$RC]\n$_LiCYAN(\$(current_branch))$RC\n$_YELLOW\u$RC$_WHITE@$RC$_LiPURPLE\h$_WHITE$>$RC "
 echo "Bash Prompt Configuration => $prompt_configuration"
 export PS1=$prompt_configuration
 
