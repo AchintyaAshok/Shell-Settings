@@ -56,14 +56,14 @@ alias dockerprune='docker system prune -a'
 
 ##### CUSTOM ALIASES #####
 alias reload="source ~/.bash_profile"
-alias ll="ls -laG"
+alias ll='ls -laG'
+alias home='cd "/Users/achintyaashok"'
+alias startPostgres='postgres -D /usr/local/var/postgres'
+alias gotoProj='cd ~/Documents/MyProjects/'
 
 ##### AWS ALIASES #####
 alias ecrlogin_us_east_1="aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.us-east-1.amazonaws.com"
 alias ecrlogin_eu_central_1="aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.eu-central-1.amazonaws.com"
 alias ecrlogin="ecrlogin_us_east_1 && ecrlogin_eu_central_1"
 
-# Setting PATH for Python 3.6
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
